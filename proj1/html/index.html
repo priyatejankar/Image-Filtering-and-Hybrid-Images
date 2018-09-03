@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>Computer Vision Project</title>
+<link href='http://fonts.googleapis.com/css?family=Nunito:300|Crimson+Text|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" title="Default" href="styles/github.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>  
+
+<link rel="stylesheet" href="highlighting/styles/default.css">
+<script src="highlighting/highlight.pack.js"></script>
+
+<style type="text/css">
+body {
+	margin: 0px;
+	width: 100%;
+	font-family: 'Crimson Text', serif;
+	font-size: 20px;
+	background: #fcfcfc;
+}
+h1 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 28px;
+	margin: 25px 0px 0px 0px;
+	text-transform: lowercase;
+
+}
+
+h2 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 32px;
+	margin: 15px 0px 35px 0px;
+	color: #333;	
+	word-spacing: 3px;
+}
+
+h3 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 26px;
+	margin: 10px 0px 10px 0px;
+	color: #333;
+	word-spacing: 2px;
+}
+h4 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 22px;
+	margin: 10px 0px 10px 0px;
+	color: #333;
+	word-spacing: 2px;
+}
+
+h5 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 18px;
+	margin: 10px 0px 10px 0px;
+	color: #111;
+	word-spacing: 2px;
+}
+
+p, li {
+	color: #444;
+}
+
+a {
+	color: #DE3737;
+}
+
+.container {
+	margin: 0px auto 0px auto;
+	width: 960px;
+}
+
+#header {
+	background: #333;
+	width: 100%;
+}
+
+#headersub {
+	color: #ccc;
+	width: 960px;
+	margin: 0px auto 0px auto;
+	padding: 20px 0px 20px 0px;
+}
+
+.chart {
+	width: 480px;
+}
+.lol {
+	font-size: 16px;
+	color: #888;
+	font-style: italic;
+}
+.sep {
+	height: 1px;
+	width: 100%;
+	background: #999;
+	margin: 20px 0px 20px 0px;
+}
+.footer{
+	font-size: 16px;
+}
+.latex {
+	width: 100%;
+}
+
+.latex img {
+	display: block;
+	margin: 0px auto 0px auto;
+}
+
+pre {
+	font-family: 'Droid Sans Mono';
+	font-size: 14px;
+}
+
+td img {
+  vertical-align: middle;
+}
+
+#contents a {
+}
+</style>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
+</head>
+<body>
+<div id="header" >
+<div id="headersub">
+<h1><span style="color: #DE3737">Priya Tejankar (GT id : 903316114)</span></h1>
+</div>
+</div>
+<div class="container">
+
+<h2>Project 1: Image Filtering and Hybrid Images</h2>
+
+<div style="float: right; padding: 20px">
+<img src="../results/hybrid_image.jpg" />
+<p style="font-size: 14px">Hyrid image for cat.bmp and dog.bmp</p>
+</div>
+
+<p> 	In this project an algorithm to do image filtering was developed. The filter developed works the same way as the filter2D function in the OpenCV library. This filter was used for creating Hybrid Images by blending high-frequency portion of one image with low-frequency portion of another image. Characteristics of the filtering algorithm are:  </p>
+
+<ol>
+<li>Works for RGB images as well as Greyscale.</li>
+<li>Supports filters of any size (odd dimensions).</li>
+<li>Pads the input image with zeros to take care of edges while performing convolution operation.</li>
+<li>The filtered image is of the same dimensions as the input image.</li>
+<li>The algorithm works for separable filters as in case of large blur filter in the proj1_test_filtering.ipynb</li>
+</ol>
+
+<p> 	A Gaussian Kernel was given and the image had to be convolved with it. The im_filter() does the convolution operation. Kernel convolution requires pixel values outside of the image. Zero padding was used for taking care of the edges. I added filter_size//2 number of zeros on all sides of the image. The algorithm takes 2.12 seconds for the large blur separable filter case.</p>
+
+<div style="clear:both">
+<h3>Hybrid Images</h3>
+
+<p> The output of the im_filter() was a blur image with just the low frequencies present. In order to generate hybrid images, we need to combine a low frequency image with the image containing high frequencies. In order to get high frequency image, the low frequency component,obtained from im_filter(), was subtracted from the original image. The resulting two images were combined (using mathematical sum operation) to generate a hybrid image. Sometimes, while adding two images, the pixel values may exceed 1 or go below 0,hence,the hybrid image had to be clipped so that pixel values lie between 0 and 1.The np.clip function was used for this purpose.          
+The blurry_dog image, identity filter image, small blur with box image, large blur along with different hybrid images are put in the result table. </p>
+
+<!-- <h2>Example of code with highlighting</h2>
+The javascript in the <code>highlighting</code> folder is configured to do syntax highlighting in code blocks such as the one below.<p>
+
+<pre><code>
+%example code
+for i = 1:length(offset)
+    source = imread(sprintf('%s/source_%02d.jpg',data_dir,i));
+    mask   = imread(sprintf('%s/mask_%02d.jpg',data_dir,i));
+    target = imread(sprintf('%s/target_%02d.jpg',data_dir,i));
+
+</code></pre> -->
+
+<h3>Results in a table</h3>
+
+<table border=1>
+<tr>
+<td>
+<img src="../results/low_frequencies.jpg" width="24%"/>
+<img src="../results/identity_image.jpg"  width="24%"/>
+<img src="../results/blur_image.jpg" width="24%"/>
+<img src="../results/large_blur_image.jpg" width="24%"/>
+</td>
+</tr>
+
+<tr>
+<td>
+<img src="../results/hybrid_image2.jpg" width="24%"/>
+<img src="../results/hybrid_image3.jpg"  width="24%"/>
+<img src="../results/hybrid_image4.jpg" width="24%"/>
+<img src="../results/hybrid_image5.jpg" width="24%"/>
+</td>
+</tr>
+
+</table>
+
+<div style="clear:both" >
+<p> In addition to the dog.bmp and cat.bmp, a few more combination of images were tried. For the einstein.bmp and marilyn.bmp, the cut-off frequency was set to 3, in order to be able to get different interpretations at different distances. Similarly,for the bicycle.bmp and motorcycle.bmp, the cut-off frequency was changed to 2.</p>
+</div>
+</body>
+</html>
