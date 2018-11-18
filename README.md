@@ -15,5 +15,5 @@ Low frequency content of this image:
 
 Resultant Hybrid image at different scales :
 <p align="center">
-  <img src="https://github.com/priyatejankar/Image-Filtering-and-Hybrid-Images/blob/master/proj1/results/hybrid_image_scales.jpg" width=600 height=600>
+  <img src="https://github.com/priyatejankar/Image-Filtering-and-Hybrid-Images/blob/master/proj1/results/hybrid_image_scales.jpg" width=600 height=400>
 </p>
